@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for project in projects %}
+        <div class="col-4">
+            <div class="card position-relative">
+                <div class="position-absolute d-flex justify-content-center gap-2 top-0 p-2">
+                    {% for tag in project.tag.all %}
+                        <div>
+                            <span class="badge rounded-pill text-bg-info text-white text-uppercase">
+                                {{ tag.name }}
+                            </span>
+
+                        </div>
+                    {% endfor %}
+                </div>
+                <img src="{{ project.preview_photo.url }}" class="card-img-top" alt="{{ project.description }}">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.name }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <a href="{% url 'project.detail' project.slug %}" class="btn btn-primary">Открыть проект</a>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock content %}
+
+
+{#<div class="accordion" id="accordionExample">#}
+{#        {% for project in projects %}#}
+{#            <div class="accordion-item">#}
+{#                <h2 class="accordion-header" id="headingOne">#}
+{#                    <button class="accordion-button" type="button" data-bs-toggle="collapse"#}
+{#                            data-bs-target="#collapseOne"#}
+{#                            aria-expanded="true" aria-controls="collapseOne">#}
+{#                        <span class="text-uppercase">#}
+{#                            {{ project.name }}#}
+{#                        </span>#}
+{##}
+{#                    </button>#}
+{#                </h2>#}
+{#                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"#}
+{#                     data-bs-parent="#accordionExample">#}
+{#                    <div class="accordion-body">#}
+{#                        <p class="text-center fs-5">#}
+{#                            <strong> {{ project.description }}</strong>#}
+{#                        </p>#}
+{#                        <div class="d-flex justify-content-center gap-2">#}
+{#                            {% for tag in  project.tag.all %}#}
+{#                                <div>#}
+{#                                    <span class="badge text-bg-primary text-uppercase fs-6">#}
+{#                                        {{ tag.name }}#}
+{#                                    </span>#}
+{#                                </div>#}
+{##}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                        <hr>#}
+{##}
+{##}
+{#                        <table class="table">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th scope="col">#</th>#}
+{#                                <th scope="col">First</th>#}
+{#                                <th scope="col">Last</th>#}
+{#                                <th scope="col">Handle</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <th scope="row">1</th>#}
+{#                                <td>Mark</td>#}
+{#                                <td>Otto</td>#}
+{#                                <td>@mdo</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">2</th>#}
+{#                                <td>Jacob</td>#}
+{#                                <td>Thornton</td>#}
+{#                                <td>@fat</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">3</th>#}
+{#                                <td colspan="2">Larry the Bird</td>#}
+{#                                <td>@twitter</td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
